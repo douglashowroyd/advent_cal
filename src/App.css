@@ -13,8 +13,12 @@
   }
 }
 
-.App-header {
+.old{
   background-color: #282c34;
+}
+
+.App-header {
+  background-color: #00873E;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +39,43 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.calendar{
+  width: 100%;
+}
+
+.door-row{
+  display: flex;
+  justify-content: space-around;
+}
+
+.door{
+  height: 5em;
+  width: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+  border-radius: 25px;
+  background-color: #B3000C;
+}
+
+.image{
+  width: 5.5em;
+  height: 5.5em;
+}
+
+.fadeOut{
+  position: absolute;
+  z-index: 0;
+  opacity:0;
+  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
+}
+
+.fadeIn{
+  position: absolute;
+  z-index: 1;
+  opacity:1;
+  transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
 }

@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Calendar from "./components/Calendar";
+import TypeSelector from "./components/TypeSelector";
+import {useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [theme, setTheme] = useState("fox");
+
+    function updateTheme(newTheme) {
+        setTheme(newTheme)
+    }
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <p>
+                    Hold the door
+
+                <TypeSelector updateTheme={updateTheme}/>
+                </p>
+                <Calendar currentTheme={theme}/>
+            </header>
+        </div>
+    );
 }
 
 export default App;
