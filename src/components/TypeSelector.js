@@ -1,6 +1,6 @@
 import '../App.css';
 import {useEffect, useState} from "react";
-import {InputLabel, Menu, MenuItem, Select} from "@material-ui/core";
+import {MenuItem, Select} from "@material-ui/core";
 
 
 function TypeSelector(props) {
@@ -10,21 +10,25 @@ function TypeSelector(props) {
         setImageType(event.target.value);
     };
 
+    useEffect(() =>{
+        if (props.theme !== imageType){
+            setImageType(props.theme)
+        }
+    }, [props])
 
     useEffect(() => {
-        props.updateTheme(imageType)
+        props.childFunc(imageType)
         }
     ,[imageType])
 
     return (
         <div>
-                <InputLabel id="demo-simple-select-label" style={{color: "white"}}>Calendar theme</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={imageType}
                     onChange={handleChange}
-                    style={{color: "white"}}
+                    style={{color: "goldenrod"}}
                 >
                     <MenuItem value={"cat"}>Cats</MenuItem>
                     <MenuItem value={"dog"}>Dogs</MenuItem>

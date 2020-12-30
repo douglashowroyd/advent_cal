@@ -13,19 +13,24 @@
   }
 }
 
+.tinsel{
+  width: 100%;
+  height: 10em;
+}
+
 .old{
   background-color: #282c34;
 }
 
 .App-header {
-  background-color: #00873E;
+  background-color: lightgray;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: goldenrod;
 }
 
 .App-link {
@@ -43,6 +48,7 @@
 
 .calendar{
   width: 100%;
+  padding-top: 2em;
 }
 
 .door-row{
@@ -58,7 +64,7 @@
   align-items: center;
   margin-bottom: 1em;
   border-radius: 25px;
-  background-color: #B3000C;
+  background-color: darkred;
 }
 
 .image{

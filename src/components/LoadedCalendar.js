@@ -3,6 +3,7 @@ import Door from "./Door";
 import {useEffect, useState} from "react";
 import getImages from "../Utils/GetImages"
 import RandomList from "../Utils/RandomLists";
+import firebase from "../firebase";
 
 function Calendar(props) {
 
@@ -12,8 +13,32 @@ function Calendar(props) {
     const [calTheme, setCalTheme] = useState("fox");
 
     useEffect(() => {
-        const imageURLs = getImages(calTheme)
-        imageURLs.then(r => setPictureList(r))
+
+        if (props.user.theme === calTheme) {
+            setPictureList(props.user.images)
+
+        } else {
+            const imageURLs = getImages(calTheme)
+            imageURLs.then(r => {
+                setPictureList(r)
+
+                let updatedUser = props.user
+                updatedUser.theme = calTheme
+                updatedUser.images = r
+
+                props.updateUser(updatedUser)
+
+                const usersRef = firebase.database().ref('users/' + updatedUser.userName);
+                usersRef.set(updatedUser);
+                console.log(updatedUser)
+
+                /*
+                const url = "http://localhost:3002/" + updatedUser.userName
+                fetch(url, {method: 'post', headers:{'Content-Type': 'application/json'}, body: JSON.stringify(updatedUser)})
+                    .then(r => { console.log(r)})
+                */
+            })
+        }
 
         const lists = RandomList()
         setEnabledList(lists.toEnable)
@@ -22,13 +47,15 @@ function Calendar(props) {
     }, [calTheme]);
 
     useEffect(() => {
-        setCalTheme(props.currentTheme)
-        }
-    , [props])
+            setCalTheme(props.currentTheme)
+    }
+    , [props]);
 
     useEffect(() => {
 
     }, [pictureList])
+
+
 
     function makeRow(start, length){
         return(
@@ -39,6 +66,7 @@ function Calendar(props) {
             </div>
         )
     }
+
 
 
     return (
